@@ -1,0 +1,61 @@
+El task runner
+	npm install grunt-cli --save-dev
+
+Para convertir los templates html a JS
+	npm install grunt-html2js --save-dev 
+
+Para minimizar/optimizar los JS
+	npm install grunt-contrib-uglify --save-dev
+
+Para limpiar los archivos temporales generados
+	npm install grunt-contrib-clean --save-dev
+
+Para correr un webserver que corra el proyecto
+	npm install grunt-contrib-connect --save-dev
+
+Un compresor que genere los zips de los releases
+	npm install grunt-contrib-compress --save-dev
+
+Para concatenar archivos y generar uno
+	npm install grunt-contrib-concat --save-dev
+
+Para que haya un validador de sintaxis y errores de javascript jshint o jslint (mas estricto)
+	npm install grunt-contrib-jshint --save-dev
+
+Detector de cambio de archivo para que genere tareas
+	npm install grunt-contrib-watch --save-dev
+
+Para obtener siempre automaticamente las ultimas dependencias BOWER
+	npm install grunt-bower-task --save-dev
+
+Para ejecutar karmas para tests
+	npm install grunt-karma --save-dev	
+
+Instalar karma para tests
+	npm install karma --save-dev	
+
+Instalar la suite de testing karma-jasmine
+	npm install karma-jasmine --save-dev	
+
+Para hacer las pruebas de karma con Phantom
+	npm install karma-phantomjs-launcher --save-dev	
+	
+	TOca crear un archivo npm-debug.log
+
+Para las pruebas de karma con angular, toca inyectar dependencia para que compile HTML a JS
+	npm install karma-ng-html2js-preprocessor --save-dev	
+
+
+
+
+
+
+
+
+	Se configura el Gruntfile.js
+
+	Con:
+		grunt.loadNpmTasks('grunt-contrib-jshint');
+	Se cargan los componentes que tienen comandos para ejecutar tareas
+
+	
