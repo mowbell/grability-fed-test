@@ -7,5 +7,22 @@
     "lodash": "2.4.1",
     "underscore.string": "2.3.3",
     "font-awesome": "4.0.3"
-  }
+  },
+  "authors": [
+    "Mauricio Bello <mow_bell@hotmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "index.html",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "libs",
+    "test",
+    "tests"
+  ]
 }
