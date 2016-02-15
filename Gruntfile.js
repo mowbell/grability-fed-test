@@ -8,8 +8,8 @@ module.exports = function(grunt) {
                 options: {
                     install: true,
                     copy: false,
-                    targetDir: './libs',
-                    cleanTargetDir: true
+                    targetDir: 'libs',
+                    cleanTargetDir:true
                 }
             }
         },
@@ -17,7 +17,7 @@ module.exports = function(grunt) {
             //Se configura que archivos se les debe validar la sintaxis y errores de javascript
             all: ['Gruntfile.js', 'app/*.js', 'app/**/*.js']
         },
-        karma: {
+        /*karma: {
             //opciones de grunt-karma
             options: {
                 configFile: 'config/karma.conf.js'
@@ -30,7 +30,7 @@ module.exports = function(grunt) {
                 singleRun: false,
                 autoWatch: true
             }
-        },
+        },*/
         html2js: {
             //Opciones para el generador de html a js
             //compila los templates angular html a JS
@@ -70,14 +70,15 @@ module.exports = function(grunt) {
             //se configura que archivos se monitorean para ejecutar instantaneamente cambios
             dev: {
                 files: ['Gruntfile.js', 'app/*.js', '*.html'],
-                tasks: ['jshint', 'karma:unit', 'html2js:dist', 'concat:dist', 'clean:temp'],
+                tasks: ['jshint',  'html2js:dist', 'concat:dist', 'clean:temp'],
+                
                 options: {
                     atBegin: true
                 }
             },
             min: {
                 files: ['Gruntfile.js', 'app/*.js', '*.html'],
-                tasks: ['jshint', 'karma:unit', 'html2js:dist', 'concat:dist', 'clean:temp', 'uglify:dist'],
+                tasks: ['jshint', 'html2js:dist', 'concat:dist', 'clean:temp', 'uglify:dist'],
                 options: {
                     atBegin: true
                 }
@@ -122,13 +123,12 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-html2js');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-bower-task');
-    grunt.loadNpmTasks('grunt-karma');
 
 
     grunt.registerTask('dev', ['bower', 'connect:server', 'watch:dev']);
-    grunt.registerTask('test', ['bower', 'jshint', 'karma:continuous']);
+    grunt.registerTask('test', ['bower', 'jshint']);
     grunt.registerTask('minified', ['bower', 'connect:server', 'watch:min']);
-    grunt.registerTask('package', ['bower', 'jshint', 'karma:unit', 'html2js:dist', 'concat:dist', 'uglify:dist',
+    grunt.registerTask('package', ['bower', 'jshint', 'html2js:dist', 'concat:dist', 'uglify:dist',
         'clean:temp', 'compress:dist'
     ]);
 

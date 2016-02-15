@@ -1,3 +1,5 @@
+Instalar grunt
+	npm install grunt --save-dev
 El task runner
 	npm install grunt-cli --save-dev
 
