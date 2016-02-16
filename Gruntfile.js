@@ -9,7 +9,7 @@ module.exports = function(grunt) {
                     install: true,
                     copy: false,
                     targetDir: 'libs',
-                    cleanTargetDir:true
+                    cleanTargetDir: true
                 }
             }
         },
@@ -67,11 +67,14 @@ module.exports = function(grunt) {
             }
         },
         watch: {
+            options: {
+                livereload: true
+            },
             //se configura que archivos se monitorean para ejecutar instantaneamente cambios
             dev: {
                 files: ['Gruntfile.js', 'app/*.js', '*.html'],
-                tasks: ['jshint',  'html2js:dist', 'concat:dist', 'clean:temp'],
-                
+                tasks: ['jshint', 'html2js:dist', 'concat:dist', 'clean:temp'],
+
                 options: {
                     atBegin: true
                 }
@@ -88,7 +91,8 @@ module.exports = function(grunt) {
             server: {
                 options: {
                     hostname: 'localhost',
-                    port: 8080
+                    port: 8080,
+                    livereload:true
                 }
             }
         },
