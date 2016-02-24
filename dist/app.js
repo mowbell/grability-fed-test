@@ -47,7 +47,7 @@ angular.module("myApp", [
     };
 });
 
-_.mixin(_.string.exports());
+_.mixin(s.exports()); //Lo-Dash integration https://github.com/epeli/underscore.string
 ;angular.module("myApp.directives", []).directive("rating", function() {
     // Write code here
     var directive = {};
@@ -133,7 +133,12 @@ _.mixin(_.string.exports());
 
     return factory;
 });
-;angular.module('templates-dist', ['../app/templates/rating.html']);
+;angular.module('templates-dist', ['../app/templates/form.html', '../app/templates/rating.html']);
+
+angular.module("../app/templates/form.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("../app/templates/form.html",
+    "<p>SAPO</p>");
+}]);
 
 angular.module("../app/templates/rating.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("../app/templates/rating.html",

@@ -1,3 +1,11 @@
+Sacado de https://github.com/song-rate-mvc/angular-song-rate/releases
+http://g00glen00b.be/less-grunt/
+http://g00glen00b.be/introduction-angularjs/
+http://g00glen00b.be/angular-grunt/
+http://g00glen00b.be/jasminify-angular-app/
+
+
+
 Instalar grunt
 	npm install grunt --save-dev
 El task runner

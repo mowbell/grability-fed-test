@@ -42,4 +42,4 @@ angular.module("myApp.controllers", []).controller("songCtrl", function($scope, 
     };
 });
 
-_.mixin(_.string.exports());
+_.mixin(s.exports()); //Lo-Dash integration https://github.com/epeli/underscore.string

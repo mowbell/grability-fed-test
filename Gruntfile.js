@@ -64,6 +64,9 @@ module.exports = function(grunt) {
             //Para remover archivos temporales
             temp: {
                 src: ['tmp']
+            },
+            dist: {
+                src: ['dist']
             }
         },
         watch: {
@@ -72,16 +75,16 @@ module.exports = function(grunt) {
             },
             //se configura que archivos se monitorean para ejecutar instantaneamente cambios
             dev: {
-                files: ['Gruntfile.js', 'app/*.js', '*.html'],
-                tasks: ['jshint', 'html2js:dist', 'concat:dist', 'clean:temp'],
+                files: ['Gruntfile.js', 'app/*.js', '*.html', 'assets/**/*.less'],
+                tasks: ['clean:dist', 'jshint', 'html2js:dist', 'concat:dist','less:dev', 'clean:temp'],
 
                 options: {
                     atBegin: true
                 }
             },
             min: {
-                files: ['Gruntfile.js', 'app/*.js', '*.html'],
-                tasks: ['jshint', 'html2js:dist', 'concat:dist', 'clean:temp', 'uglify:dist'],
+                files: ['Gruntfile.js', 'app/*.js', '*.html', 'assets/**/*.less'],
+                tasks: ['clean:dist', 'jshint', 'html2js:dist', 'concat:dist', 'less:dist', 'clean:temp', 'uglify:dist'],
                 options: {
                     atBegin: true
                 }
@@ -92,7 +95,7 @@ module.exports = function(grunt) {
                 options: {
                     hostname: 'localhost',
                     port: 8080,
-                    livereload:true
+                    livereload: true
                 }
             }
         },
@@ -101,7 +104,8 @@ module.exports = function(grunt) {
                 options: {
                     archive: 'dist/<%= pkg.name %>-<%= pkg.version %>.zip'
                 },
-                files: [{
+                src: [ 'index.html', 'dist/*.js', 'dist/*.css', 'libs/**', 'assets/**' ]
+                /*files: [{
                     src: ['index.html'],
                     dest: '/'
                 }, {
@@ -113,7 +117,29 @@ module.exports = function(grunt) {
                 }, {
                     src: ['libs/**'],
                     dest: 'libs/'
-                }]
+                }]*/
+            }
+        },
+        less: {
+            dev: {
+                options: {
+                    paths: ["assets/less"],
+                    sourceMap:true,
+                    sourceMapURL: '/dist/style.css.map',
+                    //sourceMapBasepath: '/assets/less/'
+                },
+                files: {
+                    "dist/style.css": "assets/less/style.less"
+                }
+            },
+            dist: {
+                options: {
+                    paths: ["assets/less"],
+                    cleancss: true
+                },
+                files: {
+                    "dist/style.css": "assets/less/style.less"
+                }
             }
         }
     });
@@ -127,13 +153,14 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-html2js');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-bower-task');
+    grunt.loadNpmTasks('grunt-contrib-less');
 
 
     grunt.registerTask('dev', ['bower', 'connect:server', 'watch:dev']);
     grunt.registerTask('test', ['bower', 'jshint']);
     grunt.registerTask('minified', ['bower', 'connect:server', 'watch:min']);
     grunt.registerTask('package', ['bower', 'jshint', 'html2js:dist', 'concat:dist', 'uglify:dist',
-        'clean:temp', 'compress:dist'
+        'less:dist', 'clean:temp', 'compress:dist'
     ]);
 
 };
