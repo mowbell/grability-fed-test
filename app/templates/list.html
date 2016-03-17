@@ -1,0 +1,42 @@
+<!--<nav class="navbar navbar-default">
+	
+	<div class="navbar-header">
+		<a class="navbar-brand" href="#">
+		<i class="fa fa-bars fa-6"></i> </a>
+	</div>
+	<p class="navbar-text">Signed in as Mark Otto</p>
+</nav>
+-->
+<nav id="top-nav-bar">
+	
+	
+	<div class="row vertical-align">
+		<div class="col-xs-2">
+			<a id="main-btn" href="#" ng-click="refreshList()">
+				<i class="fa fa-bars"></i>
+			</a>
+		</div>
+		<div class="col-xs-10">
+			<h3>{{currentItem.title}}</h3>
+		</div>
+	</div>
+</nav>
+<ul id="news-list" class="">
+	<li class="news-item" ng-repeat="item in news" ng-click="itemClick(item)">
+		<div class="row vertical-align news-item-row">
+			<div class="col-xs-2">
+				<div class="news-item-circle"></div>
+			</div>
+			<div class="col-xs-10"><h3 class="news-item-title">{{item.title}}<h3></div>
+		</div>
+		<div class="row news-item-details">
+			<div class="col-xs-5 news-item-image" style="background-image:url({{item.image+'?hh='+$index}})">
+				<!--<img ng-src="{{item.image+'?hh='+$index}}" class="img-responsive" alt="Responsive image">-->
+			</div>
+			<div class="col-xs-7 news-item-content">
+				<h4>{{item.title}}</h4>
+				<p>{{item.content}}</p>
+			</div>
+		</div>
+	</li>
+</ul>

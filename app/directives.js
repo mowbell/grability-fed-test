@@ -1,4 +1,5 @@
-angular.module("myApp.directives", []).directive("rating", function() {
+angular.module("myApp.directives", []);
+/*.directive("rating", function() {
     // Write code here
     var directive = {};
     directive.restrict = 'AE';
@@ -60,3 +61,4 @@ angular.module("myApp.directives", []).directive("rating", function() {
     };
     return directive;
 });
+*/

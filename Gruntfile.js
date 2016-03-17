@@ -15,7 +15,16 @@ module.exports = function(grunt) {
         },
         jshint: {
             //Se configura que archivos se les debe validar la sintaxis y errores de javascript
-            all: ['Gruntfile.js', 'app/*.js', 'app/**/*.js']
+            all: ['Gruntfile.js', 'app/*.js', 'app/**/*.js'],
+            dev: {
+                files:{
+                    src:['Gruntfile.js', 'app/*.js', 'app/**/*.js']
+                },
+                options:{
+                    debug:true,
+                    undef:false
+                }
+            }
         },
         /*karma: {
             //opciones de grunt-karma
@@ -75,15 +84,15 @@ module.exports = function(grunt) {
             },
             //se configura que archivos se monitorean para ejecutar instantaneamente cambios
             dev: {
-                files: ['Gruntfile.js', 'app/*.js', '*.html', 'assets/**/*.less'],
-                tasks: ['clean:dist', 'jshint', 'html2js:dist', 'concat:dist','less:dev', 'clean:temp'],
+                files: ['Gruntfile.js', 'app/*.js', 'app/**/*.html', 'assets/**/*.less'],
+                tasks: ['clean:dist', 'jshint:dev', 'html2js:dist', 'concat:dist','less:dev', 'clean:temp'],
 
                 options: {
                     atBegin: true
                 }
             },
             min: {
-                files: ['Gruntfile.js', 'app/*.js', '*.html', 'assets/**/*.less'],
+                files: ['Gruntfile.js', 'app/*.js', 'app/**/*.html', 'assets/**/*.less'],
                 tasks: ['clean:dist', 'jshint', 'html2js:dist', 'concat:dist', 'less:dist', 'clean:temp', 'uglify:dist'],
                 options: {
                     atBegin: true
@@ -95,7 +104,35 @@ module.exports = function(grunt) {
                 options: {
                     hostname: 'localhost',
                     port: 8080,
-                    livereload: true
+                    livereload: true,
+                    
+                    middleware: function(connect, options, middlewares) {
+                        //https://blog.gaya.ninja/articles/static-mockup-data-endpoints-connect/
+                        middlewares.push(function(req, res, next) {
+                            //stuff will go here
+                            var endpoints = {
+                                "news_mock.json": "news_mock.json",
+                            };
+                            var match = false;
+                            var fileToRead = "";
+
+                            Object.keys(endpoints).forEach(function(url) {
+                                if (req.url.indexOf(url) === 0) {
+                                    match = true;
+                                    fileToRead = endpoints[url];
+                                }
+                            });
+
+                            //no match with the url, move along
+                            if (match === false) {
+                                return next();
+                            }
+
+                            res.end(grunt.file.read(fileToRead));
+                        });
+
+                        return middlewares;
+                    }
                 }
             }
         },

@@ -1,4 +1,5 @@
-angular.module("myApp.services", []).factory("songService", function() {
+angular.module("myApp.services", []);
+/*.factory("songService", function() {
     // Write code here
 
     var STORAGE_ID = 'myApp.songs',
@@ -14,3 +15,4 @@ angular.module("myApp.services", []).factory("songService", function() {
 
     return factory;
 });
+*/
