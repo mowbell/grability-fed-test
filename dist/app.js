@@ -92,7 +92,7 @@ angular.module("../app/templates/list.html", []).run(["$templateCache", function
     "				<!--<img ng-src=\"{{item.image+'?hh='+$index}}\" class=\"img-responsive\" alt=\"Responsive image\">-->\n" +
     "			</div>\n" +
     "			<div class=\"col-xs-7 news-item-content\">\n" +
-    "				<h4>{{item.title}}</h4>\n" +
+    "				<h5>{{item.title}}</h5>\n" +
     "				<p>{{item.content}}</p>\n" +
     "			</div>\n" +
     "		</div>\n" +

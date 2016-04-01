@@ -82,7 +82,7 @@ body {
 }
 #news-list {
   min-height: 480px;
-  background: gray;
+  background: #D4D4D4;
   padding-top: 30px;
   padding-left: 60px;
   padding-right: 60px;
@@ -114,10 +114,10 @@ body {
   line-height: 1em;
 }
 #news-list .news-item:nth-child(odd) .news-item-circle {
-  background: orange;
+  background: #C7F04B;
 }
 #news-list .news-item:nth-child(even) .news-item-circle {
-  background: green;
+  background: #2FC3CB;
 }
 #news-list .news-item.ng-enter {
   -webkit-transition: all 0.5s cubic-bezier(0.76, -0.8, 0.15, 2.54);
