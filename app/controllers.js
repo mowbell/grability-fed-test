@@ -2,6 +2,7 @@ angular.module("myApp.controllers", [])
     .controller("listCtrl", function($scope, $http, $timeout) {
         $scope.news=[];
         $scope.currentItem={};
+        $scope.lastTitle="";
         var _refreshList=function(){
             $scope.news=[];
             $scope.currentItem={};
@@ -15,9 +16,12 @@ angular.module("myApp.controllers", [])
 
         $scope.refreshList=_refreshList;
         $scope.itemClick=function(item){
-            if($scope.currentItem !== item)
+            if($scope.currentItem !== item){
                 $scope.currentItem=item;
+                $scope.lastTitle=$scope.currentItem.title;
+            }
             else
                 $scope.currentItem={};
+
         };
     });

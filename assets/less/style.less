@@ -45,13 +45,32 @@ body{
     	font-size:4em;
     	color:white;
     }
-    h3{
+    .current-item-title{
     	text-overflow: ellipsis;
 		overflow: hidden;
 		word-wrap: break-word;
 		white-space: nowrap;
 		color:white;
+		 .transition(all 0.18s cubic-bezier(0, 0, 0.85,-0.23));
+
+		&.ng-hide-add{
+			.transform(translate(0px,0px));
+		}
+
+		&.ng-hide-remove-active{
+			opacity: 0;
+			.transform(translate(0px,-50px));
+		}
+
+		&.ng-hide {
+		  opacity: 0;
+		  .transform(translate(-50px,0px));
+		}
+
+
     }
+
+
 }
 
 
@@ -134,7 +153,8 @@ body{
 		.news-item-details{
 	    	display: table;
 	    	padding:0;
-
+	    	.transition(all 0.5s cubic-bezier(0.72, 1.34, 0.71, 1.17)); 
+	    	
 	    	.news-item-content, .news-item-image {
 			    float: none;
 			    display: table-cell;
@@ -144,6 +164,22 @@ body{
 			.news-item-image{
 				background-size: cover;
 				background-position: center center;
+			}
+			
+			&.ng-enter, &.ng-leave {
+			
+			}
+
+			&.ng-enter,
+			&.ng-leave.ng-leave-active {
+			  opacity:0;
+			  font-size: 0;
+			  line-height: 0;
+			}
+
+			&.ng-leave,
+			&.ng-enter.ng-enter-active {
+			  opacity:1;
 			}
 		}
 	}

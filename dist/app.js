@@ -8,6 +8,7 @@ angular.module("myApp", [
     .controller("listCtrl", function($scope, $http, $timeout) {
         $scope.news=[];
         $scope.currentItem={};
+        $scope.lastTitle="";
         var _refreshList=function(){
             $scope.news=[];
             $scope.currentItem={};
@@ -21,100 +22,18 @@ angular.module("myApp", [
 
         $scope.refreshList=_refreshList;
         $scope.itemClick=function(item){
-            if($scope.currentItem !== item)
+            if($scope.currentItem !== item){
                 $scope.currentItem=item;
+                $scope.lastTitle=$scope.currentItem.title;
+            }
             else
                 $scope.currentItem={};
+
         };
     });
 ;angular.module("myApp.directives", []);
-/*.directive("rating", function() {
-    // Write code here
-    var directive = {};
-    directive.restrict = 'AE';
-
-    directive.scope = {
-        score: '=score',
-        max: '=max'
-    };
-
-    directive.templateUrl = "app/templates/rating.html";
-    directive.link = function(scope, elements, attr) {
-
-        scope.updateStars = function() {
-            var idx = 0;
-            scope.stars = [];
-            for (idx = 0; idx < scope.max; idx += 1) {
-                scope.stars.push({
-                    full: scope.score > idx
-                });
-            }
-        };
-
-        scope.starClass = function(star, idx) {
-            var starClass = 'fa-star-o';
-            if (star.full || idx <= scope.hoverIdx) {
-                starClass = 'fa-star';
-            }
-            return starClass;
-        };
-
-
-        scope.$watch('score', function(newValue, oldValue) {
-            if (newValue !== null && newValue !== undefined) {
-                scope.updateStars();
-            }
-        });
-
-        scope.setRating = function(idx) {
-            scope.score = idx + 1;
-            scope.stopHover();
-        };
-
-        scope.hover = function(idx) {
-            scope.hoverIdx = idx;
-        };
-
-        scope.stopHover = function() {
-            scope.hoverIdx = -1;
-        };
-
-        scope.starColor = function(idx) {
-            var starClass = 'rating-normal';
-            if (idx <= scope.hoverIdx) {
-                starClass = 'rating-highlight';
-            }
-            return starClass;
-        };
-
-    };
-    return directive;
-});
-*/;angular.module("myApp.filters", []);
-/*    .filter("titleize", function() {
-        // Write code here
-        return function(input) {
-            return _.titleize(input);
-        };
-    });
-*/;angular.module("myApp.services", []);
-/*.factory("songService", function() {
-    // Write code here
-
-    var STORAGE_ID = 'myApp.songs',
-        factory = {};
-
-    factory.get = function() {
-        return JSON.parse(localStorage.getItem(STORAGE_ID) || '[]');
-    };
-
-    factory.put = function(songs) {
-        localStorage.setItem(STORAGE_ID, JSON.stringify(songs));
-    };
-
-    return factory;
-});
-*/;angular.module('templates-dist', ['../app/templates/form.html', '../app/templates/list.html', '../app/templates/rating.html']);
+;angular.module("myApp.filters", []);
+;angular.module("myApp.services", []);;angular.module('templates-dist', ['../app/templates/form.html', '../app/templates/list.html']);
 
 angular.module("../app/templates/form.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("../app/templates/form.html",
@@ -156,7 +75,7 @@ angular.module("../app/templates/list.html", []).run(["$templateCache", function
     "			</a>\n" +
     "		</div>\n" +
     "		<div class=\"col-xs-10\">\n" +
-    "			<h3>{{currentItem.title}}</h3>\n" +
+    "			<h3 ng-show=\"currentItem.title\" class=\"current-item-title\">{{lastTitle}}</h3>\n" +
     "		</div>\n" +
     "	</div>\n" +
     "</nav>\n" +
@@ -179,13 +98,4 @@ angular.module("../app/templates/list.html", []).run(["$templateCache", function
     "		</div>\n" +
     "	</li>\n" +
     "</ul>");
-}]);
-
-angular.module("../app/templates/rating.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("../app/templates/rating.html",
-    "<div class=\"rating\">\n" +
-    "  <a ng-repeat=\"star in stars\" ng-click=\"setRating($index)\" ng-mouseover=\"hover($index)\" ng-mouseleave=\"stopHover()\" ng-class=\"starColor($index)\">\n" +
-    "    <i class=\"fa\" ng-class=\"starClass(star, $index)\"></i>\n" +
-    "  </a>\n" +
-    "</div>");
 }]);
