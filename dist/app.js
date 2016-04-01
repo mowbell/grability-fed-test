@@ -21,7 +21,10 @@ angular.module("myApp", [
 
         $scope.refreshList=_refreshList;
         $scope.itemClick=function(item){
-            $scope.currentItem=item;
+            if($scope.currentItem !== item)
+                $scope.currentItem=item;
+            else
+                $scope.currentItem={};
         };
     });
 ;angular.module("myApp.directives", []);
@@ -165,7 +168,7 @@ angular.module("../app/templates/list.html", []).run(["$templateCache", function
     "			</div>\n" +
     "			<div class=\"col-xs-10\"><h3 class=\"news-item-title\">{{item.title}}<h3></div>\n" +
     "		</div>\n" +
-    "		<div class=\"row news-item-details\">\n" +
+    "		<div class=\"row news-item-details\" ng-if=\"currentItem==item\">\n" +
     "			<div class=\"col-xs-5 news-item-image\" style=\"background-image:url({{item.image+'?hh='+$index}})\">\n" +
     "				<!--<img ng-src=\"{{item.image+'?hh='+$index}}\" class=\"img-responsive\" alt=\"Responsive image\">-->\n" +
     "			</div>\n" +

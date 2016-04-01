@@ -29,7 +29,7 @@
 			</div>
 			<div class="col-xs-10"><h3 class="news-item-title">{{item.title}}<h3></div>
 		</div>
-		<div class="row news-item-details">
+		<div class="row news-item-details" ng-if="currentItem==item">
 			<div class="col-xs-5 news-item-image" style="background-image:url({{item.image+'?hh='+$index}})">
 				<!--<img ng-src="{{item.image+'?hh='+$index}}" class="img-responsive" alt="Responsive image">-->
 			</div>

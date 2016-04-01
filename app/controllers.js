@@ -15,6 +15,9 @@ angular.module("myApp.controllers", [])
 
         $scope.refreshList=_refreshList;
         $scope.itemClick=function(item){
-            $scope.currentItem=item;
+            if($scope.currentItem !== item)
+                $scope.currentItem=item;
+            else
+                $scope.currentItem={};
         };
     });
